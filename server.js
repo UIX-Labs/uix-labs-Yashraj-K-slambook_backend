@@ -1,19 +1,23 @@
 // TASK 1: Setting up server
 
 
+
 const http = require('http');
 
+// Creating the HTTP server
 const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
+
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  
+  // Sending the "Hello World" response
   res.end('Hello World\n');
 });
 
-const PORT = 80;
-const HOSTNAME = '0.0.0.0';
-
-server.listen(PORT, HOSTNAME, () => {
-  console.log(`Server running at http://${HOSTNAME}:${PORT}/`);
+// Setting up the server to listen on localhost:8000
+const PORT = 8000;
+const HOST = 'localhost';
+server.listen(PORT, HOST, () => {
+  console.log(`Server running at http://${HOST}:${PORT}/`);
 });
 
 
