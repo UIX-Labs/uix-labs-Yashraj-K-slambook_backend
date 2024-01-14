@@ -1,23 +1,19 @@
 // TASK 1: Setting up server
 
 
-
 const http = require('http');
 
-// Creating the HTTP server
 const server = http.createServer((req, res) => {
-
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  
-  // Sending the "Hello World" response
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
   res.end('Hello World\n');
 });
 
-// Setting up the server to listen on localhost:8000
-const PORT = 8000;
-const HOST = 'localhost';
-server.listen(PORT, HOST, () => {
-  console.log(`Server running at http://${HOST}:${PORT}/`);
+const PORT = 80;
+const HOSTNAME = '0.0.0.0';
+
+server.listen(PORT, HOSTNAME, () => {
+  console.log(`Server running at http://${HOSTNAME}:${PORT}/`);
 });
 
 
@@ -25,14 +21,14 @@ server.listen(PORT, HOST, () => {
 
 // Task 2 : Connecting with mongo db data base 
 
-/*
+
 const http = require('http');
 const { MongoClient } = require('mongodb');
 
 const PORT = 80;
 const HOSTNAME = '0.0.0.0';
 
-const mongoUri = 'mongodb+srv://<user_name>:<password>s@<mongo_cluster_url>';
+const mongoUri = 'mongodb+srv://yashrajkanake2002:yashrajk@cluster0.wmeaadf.mongodb.net/?retryWrites=true&w=majority';
 const client = new MongoClient(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 async function startServer() {
@@ -60,7 +56,7 @@ async function startServer() {
 
 startServer();
 
-*/
+
 
 
 
