@@ -25,15 +25,18 @@ server.listen(PORT, HOST, () => {
 
 // Task 2 : Connecting with mongo db data base 
 
-/*
+
 const http = require('http');
 const { MongoClient } = require('mongodb');
 
 const PORT = 80;
 const HOSTNAME = '0.0.0.0';
 
-const mongoUri = 'mongodb+srv://<user_name>:<password>s@<mongo_cluster_url>';
-const client = new MongoClient(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
+const mongoUri = "mongodb+srv://yashrajkanake2002:yashrajk@cluster0.wmeaadf.mongodb.net/";
+const client = new MongoClient(mongoUri, { 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true 
+    });
 
 async function startServer() {
   try {
@@ -60,7 +63,7 @@ async function startServer() {
 
 startServer();
 
-*/
+
 
 
 
