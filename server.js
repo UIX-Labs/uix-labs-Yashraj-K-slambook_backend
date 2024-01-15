@@ -1,24 +1,24 @@
-// TASK 1: Setting up server
+// // TASK 1: Setting up server
 
 
 
-const http = require('http');
+// const http = require('http');
 
-// Creating the HTTP server
-const server = http.createServer((req, res) => {
+// // Creating the HTTP server
+// const server = http.createServer((req, res) => {
 
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
+//   res.writeHead(200, { 'Content-Type': 'text/plain' });
   
-  // Sending the "Hello World" response
-  res.end('Hello World\n');
-});
+//   // Sending the "Hello World" response
+//   res.end('Hello World\n');
+// });
 
-// Setting up the server to listen on localhost:8000
-const PORT = 8000;
-const HOST = 'localhost';
-server.listen(PORT, HOST, () => {
-  console.log(`Server running at http://${HOST}:${PORT}/`);
-});
+// // Setting up the server to listen on localhost:8000
+// const PORT = 8000;
+// const HOST = 'localhost';
+// server.listen(PORT, HOST, () => {
+//   console.log(`Server running at http://${HOST}:${PORT}/`);
+// });
 
 
 
@@ -32,7 +32,7 @@ const { MongoClient } = require('mongodb');
 const PORT = 80;
 const HOSTNAME = '0.0.0.0';
 
-const mongoUri = "mongodb+srv://yashrajkanake2002:yashrajk@cluster0.wmeaadf.mongodb.net/";
+const mongoUri = "mongodb+srv://yashraj:o7W2Te8MeU14Ufgt@cluster0.wmeaadf.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(mongoUri, { 
     useNewUrlParser: true, 
     useUnifiedTopology: true 
