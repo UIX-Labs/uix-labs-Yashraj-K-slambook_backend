@@ -28,7 +28,7 @@ const { MongoClient } = require('mongodb');
 const PORT = 80;
 const HOSTNAME = '0.0.0.0';
 
-const mongoUri = 'mongodb+srv://yashrajkanake2002:yashrajk@cluster0.wmeaadf.mongodb.net/?retryWrites=true&w=majority';
+const mongoUri = "mongodb+srv://yashraj:o7W2Te8MeU14Ufgt@cluster0.wmeaadf.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 async function startServer() {
@@ -63,14 +63,14 @@ startServer();
 
 // TASK 3 : Use mongoose instead of mongodb driver 
 
-/**
+
 const http = require('http');
 const mongoose = require('mongoose');
 
 const PORT = 80;
 const HOSTNAME = '0.0.0.0';
 
-const uri = "mongodb+srv://suraj_admin:suraj_admin@cluster0.dme40pl.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb+srv://yashraj:o7W2Te8MeU14Ufgt@cluster0.wmeaadf.mongodb.net/?retryWrites=true&w=majority";
 
 async function startServer() {
   try {
@@ -97,7 +97,7 @@ async function startServer() {
 
 startServer();
 
- */
+ 
 
 
 
