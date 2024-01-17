@@ -267,33 +267,41 @@ app.post('/slambook', async (req, res) => {
 //   }
 // });
 
-// app.put('/slambook/:id', async (req, res) => {
-//   try {
-//     const updatedEntry = await SlamBook.findByIdAndUpdate(req.params.id, req.body, { new: true });
-//     if (updatedEntry) {
-//       res.json({ message: 'Entry Updated' });
-//     } else {
-//       res.status(404).json({ message: 'Entry not found' });
-//     }
-//   } catch (error) {
-//     console.error('Error updating slambook entry:', error);
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// });
+app.put('/slambook/:id', async (req, res) => {
+  try {
+    const updatedEntry = await SlamBook.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (updatedEntry) {
+      res.json({ message: 'Entry Updated' });
+    } else {
+      res.status(404).json({ message: 'Entry not found' });
+    }
+  } catch (error) {
+    console.error('Error updating slambook entry:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
-// app.delete('/slambook/:id', async (req, res) => {
-//   try {
-//     const deletedEntry = await SlamBook.findByIdAndDelete(req.params.id);
-//     if (deletedEntry) {
-//       res.json({ message: 'Entry Deleted' });
-//     } else {
-//       res.status(404).json({ message: 'Entry not found' });
-//     }
-//   } catch (error) {
-//     console.error('Error deleting slambook entry:', error);
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// });
+app.delete('/slambook/:id', async (req, res) => {
+    const entryId = req.params.id;
+
+  try {
+
+    const deletedEntry = await SlamBook.findByIdAndDelete(entryId);
+
+    if (deletedEntry) {
+
+      res.status(200).json({ message: 'Entry Deleted', entry: deletedEntry });
+    } else {
+
+      res.status(404).json({ message: 'Entry not found' });
+
+    }
+  } catch (error) {
+    console.error('Error deleting slambook entry:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 // Start the server
 app.listen(PORT, HOSTNAME, () => {
   console.log(`Server running at http://${HOSTNAME}:${PORT}/`);
