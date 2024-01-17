@@ -267,19 +267,19 @@ app.post('/slambook', async (req, res) => {
 //   }
 // });
 
-// app.put('/slambook/:id', async (req, res) => {
-//   try {
-//     const updatedEntry = await SlamBook.findByIdAndUpdate(req.params.id, req.body, { new: true });
-//     if (updatedEntry) {
-//       res.json({ message: 'Entry Updated' });
-//     } else {
-//       res.status(404).json({ message: 'Entry not found' });
-//     }
-//   } catch (error) {
-//     console.error('Error updating slambook entry:', error);
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// });
+app.put('/slambook/:id', async (req, res) => {
+  try {
+    const updatedEntry = await SlamBook.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (updatedEntry) {
+      res.json({ message: 'Entry Updated' });
+    } else {
+      res.status(404).json({ message: 'Entry not found' });
+    }
+  } catch (error) {
+    console.error('Error updating slambook entry:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 // app.delete('/slambook/:id', async (req, res) => {
 //   try {
