@@ -64,38 +64,38 @@
 // TASK 3 : Use mongoose instead of mongodb driver 
 
 
-const http = require('http');
-const mongoose = require('mongoose');
+// const http = require('http');
+// const mongoose = require('mongoose');
 
-const PORT = 80;
-const HOSTNAME = '0.0.0.0';
+// const PORT = 80;
+// const HOSTNAME = '0.0.0.0';
 
-const uri = "mongodb+srv://yashraj:o7W2Te8MeU14Ufgt@cluster0.wmeaadf.mongodb.net/?retryWrites=true&w=majority";
+// const uri = "mongodb+srv://yashraj:o7W2Te8MeU14Ufgt@cluster0.wmeaadf.mongodb.net/?retryWrites=true&w=majority";
 
-async function startServer() {
-  try {
-    // Connect to MongoDB using Mongoose
-    await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-    console.log('Connected to MongoDB');
+// async function startServer() {
+//   try {
+//     // Connect to MongoDB using Mongoose
+//     await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+//     console.log('Connected to MongoDB');
 
-    // Create HTTP Server
-    const server = http.createServer((req, res) => {
-      res.statusCode = 200;
-      res.setHeader('Content-Type', 'text/plain');
-      res.end('Hello World\n');
-    });
+//     // Create HTTP Server
+//     const server = http.createServer((req, res) => {
+//       res.statusCode = 200;
+//       res.setHeader('Content-Type', 'text/plain');
+//       res.end('Hello World\n');
+//     });
 
-    // Start HTTP Server
-    server.listen(PORT, HOSTNAME, () => {
-      console.log(`Server running at http://${HOSTNAME}:${PORT}/`);
-    });
-  } catch (err) {
-    console.error('Could not connect to MongoDB:', err);
-    process.exit(1);
-  }
-}
+//     // Start HTTP Server
+//     server.listen(PORT, HOSTNAME, () => {
+//       console.log(`Server running at http://${HOSTNAME}:${PORT}/`);
+//     });
+//   } catch (err) {
+//     console.error('Could not connect to MongoDB:', err);
+//     process.exit(1);
+//   }
+// }
 
-startServer();
+// startServer();
 
  
 
@@ -123,7 +123,7 @@ const SlamBook = mongoose.model('SlamBook', slambookSchema);
 
 
 //TASK5: Write sample crud endpoints
-/**
+
 const http = require('http');
 const url = require('url');
 const mongoose = require('mongoose');
@@ -180,8 +180,7 @@ const server = http.createServer((req, res) => {
 server.listen(PORT, HOSTNAME, () => {
   console.log(`Server running at http://${HOSTNAME}:${PORT}/`);
 });
- */
-
+ 
 
 //TASK 06-09 CRUD For Slambook: 
 // const express = require('express');
