@@ -124,121 +124,121 @@ const SlamBook = mongoose.model('SlamBook', slambookSchema);
 
 //TASK5: Write sample crud endpoints
 
-const http = require('http');
-const url = require('url');
-const mongoose = require('mongoose');
-const { StringDecoder } = require('string_decoder');
-
-const PORT = 80;
-const HOSTNAME = '0.0.0.0';
-
-const server = http.createServer((req, res) => {
-  const parsedUrl = url.parse(req.url, true);
-  const path = parsedUrl.pathname.replace(/^\/+|\/+$/g, '');
-  const method = req.method.toLowerCase();
-
-  // Buffer the data
-  const decoder = new StringDecoder('utf-8');
-  let buffer = '';
-  req.on('data', (data) => {
-    buffer += decoder.write(data);
-  });
-
-  req.on('end', () => {
-    buffer += decoder.end();
-
-    let responseContent = 'Not Found\n';
-    let statusCode = 404;
-
-    // Sample CRUD Endpoints
-    if (path === '') {
-      switch (method) {
-        case 'get':
-          responseContent = 'Read: Sample Data\n';
-          statusCode = 200;
-          break;
-        case 'post':
-          responseContent = 'Create: Data Received - ' + buffer + '\n';
-          statusCode = 201;
-          break;
-        case 'put':
-          responseContent = 'Update: Data Received - ' + buffer + '\n';
-          statusCode = 200;
-          break;
-        case 'delete':
-          responseContent = 'Delete: Sample Data\n';
-          statusCode = 200;
-          break;
-      }
-    }
-
-    res.writeHead(statusCode, { 'Content-Type': 'text/plain' });
-    res.end(responseContent);
-  });
-});
-
-server.listen(PORT, HOSTNAME, () => {
-  console.log(`Server running at http://${HOSTNAME}:${PORT}/`);
-});
- 
-
-//TASK 06-09 CRUD For Slambook: 
-// const express = require('express');
+// const http = require('http');
+// const url = require('url');
 // const mongoose = require('mongoose');
-// const bodyParser = require('body-parser');
-// const cors = require('cors');
+// const { StringDecoder } = require('string_decoder');
 
 // const PORT = 80;
 // const HOSTNAME = '0.0.0.0';
 
-// const app = express();
+// const server = http.createServer((req, res) => {
+//   const parsedUrl = url.parse(req.url, true);
+//   const path = parsedUrl.pathname.replace(/^\/+|\/+$/g, '');
+//   const method = req.method.toLowerCase();
 
-// // Middleware
-// app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(bodyParser.json());
-// app.use(cors());
-
-// // MongoDB connection
-// const uri = "mongodb+srv://suraj_admin:suraj_admin@cluster0.dme40pl.mongodb.net/?retryWrites=true&w=majority";
-// mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-//   .then(() => {
-//     console.log('Connected to MongoDB');
-//   })
-//   .catch((err) => {
-//     console.error('Could not connect to MongoDB:', err);
-//     process.exit(1);
+//   // Buffer the data
+//   const decoder = new StringDecoder('utf-8');
+//   let buffer = '';
+//   req.on('data', (data) => {
+//     buffer += decoder.write(data);
 //   });
 
-// SlamBook schema and model
-// const slambookSchema = new mongoose.Schema({
-//   nameInYourContact: String,
-//   relationship: String,
-//   somethingYouLikeInMe: String,
-//   somethingYouHateInMe: String,
-//   ifIDieYourReaction: String,
-//   whatDidYouFeelWhenYouFirstSawMe: String,
-//   beutifulMessageForMe: String,
-//   nickNameForMe: String,
-//   songDedicatedToMe: String,
-//   canIShare: String,
-//   yourName: String
+//   req.on('end', () => {
+//     buffer += decoder.end();
+
+//     let responseContent = 'Not Found\n';
+//     let statusCode = 404;
+
+//     // Sample CRUD Endpoints
+//     if (path === '') {
+//       switch (method) {
+//         case 'get':
+//           responseContent = 'Read: Sample Data\n';
+//           statusCode = 200;
+//           break;
+//         case 'post':
+//           responseContent = 'Create: Data Received - ' + buffer + '\n';
+//           statusCode = 201;
+//           break;
+//         case 'put':
+//           responseContent = 'Update: Data Received - ' + buffer + '\n';
+//           statusCode = 200;
+//           break;
+//         case 'delete':
+//           responseContent = 'Delete: Sample Data\n';
+//           statusCode = 200;
+//           break;
+//       }
+//     }
+
+//     res.writeHead(statusCode, { 'Content-Type': 'text/plain' });
+//     res.end(responseContent);
+//   });
 // });
 
-// const SlamBook = mongoose.model('SlamBook', slambookSchema);
-// // Routes
-// app.get('/', (req, res) => {
-//   res.json({ message: `Yay, app is running hvdhbvhjdbf on port ${PORT}` });
+// server.listen(PORT, HOSTNAME, () => {
+//   console.log(`Server running at http://${HOSTNAME}:${PORT}/`);
 // });
+ 
 
-// app.get('/slambook', async (req, res) => {
-//   try {
-//     const entries = await SlamBook.find(req.query);
-//     res.json(entries);
-//   } catch (error) {
-//     console.error('Error fetching slambook entries:', error);
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// });
+//TASK 06-09 CRUD For Slambook: 
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
+const PORT = 80;
+const HOSTNAME = '0.0.0.0';
+
+const app = express();
+
+// Middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cors());
+
+// MongoDB connection
+const uri = "mongodb+srv://yashraj:o7W2Te8MeU14Ufgt@cluster0.wmeaadf.mongodb.net/?retryWrites=true&w=majority";
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log('Connected to MongoDB');
+  })
+  .catch((err) => {
+    console.error('Could not connect to MongoDB:', err);
+    process.exit(1);
+  });
+
+//SlamBook schema and model
+const slambookSchema = new mongoose.Schema({
+  nameInYourContact: String,
+  relationship: String,
+  somethingYouLikeInMe: String,
+  somethingYouHateInMe: String,
+  ifIDieYourReaction: String,
+  whatDidYouFeelWhenYouFirstSawMe: String,
+  beutifulMessageForMe: String,
+  nickNameForMe: String,
+  songDedicatedToMe: String,
+  canIShare: String,
+  yourName: String
+});
+
+const SlamBook = mongoose.model('SlamBook', slambookSchema);
+// Routes
+app.get('/', (req, res) => {
+  res.json({ message: `Yay, app is running hvdhbvhjdbf on port ${PORT}` });
+});
+
+app.get('/slambook', async (req, res) => {
+  try {
+    const entries = await SlamBook.find(req.query);
+    res.json(entries);
+  } catch (error) {
+    console.error('Error fetching slambook entries:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 // app.post('/slambook', async (req, res) => {
 //   try {
@@ -292,7 +292,7 @@ server.listen(PORT, HOSTNAME, () => {
 //     res.status(500).json({ error: 'Internal Server Error' });
 //   }
 // });
-// // Start the server
-// app.listen(PORT, HOSTNAME, () => {
-//   console.log(`Server running at http://${HOSTNAME}:${PORT}/`);
-// });
+// Start the server
+app.listen(PORT, HOSTNAME, () => {
+  console.log(`Server running at http://${HOSTNAME}:${PORT}/`);
+});
