@@ -268,14 +268,21 @@ app.post('/slambook', async (req, res) => {
 // });
 
 app.put('/slambook/:id', async (req, res) => {
+      const entryId = req.params.id;
+
   try {
-    const updatedEntry = await SlamBook.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const updatedEntry = await SlamBook.findByIdAndUpdate(
+        req.params.id,
+        entryId,
+         req.body, {
+             new: true });
     if (updatedEntry) {
-      res.json({ message: 'Entry Updated' });
+      res.status(200).json({ message: 'Entry Updated', entry: updatedEntry });
     } else {
       res.status(404).json({ message: 'Entry not found' });
     }
   } catch (error) {
+    
     console.error('Error updating slambook entry:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
