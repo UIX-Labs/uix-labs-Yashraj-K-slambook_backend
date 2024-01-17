@@ -310,7 +310,7 @@ app.put('/slambook/:id', async (req, res) => {
   }
 });
 
-//Delete
+//DELETE
 
 app.delete('/slambook/:id', async (req, res) => {
     const entryId = req.params.id;
