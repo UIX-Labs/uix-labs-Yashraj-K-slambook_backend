@@ -240,17 +240,19 @@ app.get('/slambook', async (req, res) => {
   }
 });
 
-// app.post('/slambook', async (req, res) => {
-//   try {
-//     const newEntry = new SlamBook(req.body);
-//     await newEntry.save();
-//     res.status(201).json({ message: 'Entry Created' });
-//   } catch (error) {
-//     console.error('Error creating slambook entry:', error);
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// });
+app.post('/slambook', async (req, res) => {
+  try {
+    
+    const newEntry = new SlamBook(req.body);
 
+    
+    await newEntry.save();
+ res.status(201).json({ message: 'Entry Created' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 // app.get('/slambook/:id', async (req, res) => {
 //   try {
 //     const entry = await SlamBook.findById(req.params.id);
