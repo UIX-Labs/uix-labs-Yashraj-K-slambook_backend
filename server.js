@@ -232,13 +232,33 @@ app.get('/', (req, res) => {
 
 app.get('/slambook', async (req, res) => {
   try {
+
     const entries = await SlamBook.find(req.query);
-    res.json(entries);
+    res.status(200).json(entries);
   } catch (error) {
     console.error('Error fetching slambook entries:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+app.get('/slambook/:id', async (req, res) => {
+  const entryId = req.params.id;
+
+  try {
+   
+    const entry = await SlamBook.findById(entryId);
+
+    if (entry) {
+      res.status(200).json(entry);
+    } else {
+      res.status(404).json({ error: 'Not Found' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+//POST
 
 app.post('/slambook', async (req, res) => {
   try {
@@ -267,19 +287,30 @@ app.post('/slambook', async (req, res) => {
 //   }
 // });
 
+//PUT
+
 app.put('/slambook/:id', async (req, res) => {
+      const entryId = req.params.id;
+
   try {
-    const updatedEntry = await SlamBook.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const updatedEntry = await SlamBook.findByIdAndUpdate(
+        req.params.id,
+        entryId,
+         req.body, {
+             new: true });
     if (updatedEntry) {
-      res.json({ message: 'Entry Updated' });
+      res.status(200).json({ message: 'Entry Updated', entry: updatedEntry });
     } else {
       res.status(404).json({ message: 'Entry not found' });
     }
   } catch (error) {
+
     console.error('Error updating slambook entry:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+//Delete
 
 app.delete('/slambook/:id', async (req, res) => {
     const entryId = req.params.id;
